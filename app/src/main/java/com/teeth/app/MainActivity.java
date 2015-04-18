@@ -50,7 +50,7 @@ public class MainActivity extends ActionBarActivity {
         @Override
         protected String doInBackground(Void... params) {
             RestClient restClient = new RestClient();
-            String output = "";
+
             User user = new User();
             try {
 
