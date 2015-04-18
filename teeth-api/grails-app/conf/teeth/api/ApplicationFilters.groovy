@@ -5,7 +5,11 @@ class ApplicationFilters {
     def filters = {
         all(controller:'*', action:'*') {
             before = {
-                println "printing params " + params + "  params action :" + params.action + "request method " + request.method
+
+                println "printing params " + params + "\n  params action :" + params.action + "\n request method " + request.method  +
+                        "forwardURI" + request.forwardURI
+
+
             }
             after = { Map model ->
 
