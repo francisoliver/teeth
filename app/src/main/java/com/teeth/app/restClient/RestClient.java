@@ -13,7 +13,7 @@ import java.util.Date;
 
 public class RestClient {
 
-    private static final String BASE_URL = "http://10.49.236.67:8080/teeth-api";
+    private static final String BASE_URL = "http://192.168.0.97:8080/teeth-api";
     private TeethService teethService;
 
     public RestClient() {

@@ -21,7 +21,7 @@ class User {
         mobile nullable: true
         firstName nullable: false, blank: false
         lastName nullable:  false, blank: false
-        password nullable: false, blank: false, password: true, minSize: 6, maxSize: 10
+        password nullable: false, blank: false, password: true, minSize: 6
         token nullable:  true
     }
 

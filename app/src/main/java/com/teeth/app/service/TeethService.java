@@ -1,7 +1,11 @@
 package com.teeth.app.service;
 
+import com.teeth.app.model.Login;
 import com.teeth.app.model.User;
+import retrofit.client.Response;
+import retrofit.http.Body;
 import retrofit.http.GET;
+import retrofit.http.POST;
 import retrofit.http.Path;
 
 import java.util.List;
@@ -19,5 +23,8 @@ public interface TeethService {
 
     @POST("/api/user")
     Response register(@Body User user);
+
+    @POST("/api/login")
+    Response login(@Body Login login);
 
 }
