@@ -17,4 +17,7 @@ public interface TeethService {
     @GET("/api/user/{username}")
     User getUser(@Path("username") String username);
 
+    @POST("/api/user")
+    Response register(@Body User user);
+
 }
