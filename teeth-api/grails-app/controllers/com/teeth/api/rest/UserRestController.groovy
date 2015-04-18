@@ -4,6 +4,7 @@ import com.teeth.api.User
 import com.teeth.api.ExternalApiService
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import grails.plugin.springsecurity.SpringSecurityService
 
 @Transactional(readOnly = true)
 class UserRestController {
@@ -11,6 +12,7 @@ class UserRestController {
     ExternalApiService externalApiService
     static responseFormats = ['json', 'xml']
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    SpringSecurityService springSecurityService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -41,6 +43,7 @@ class UserRestController {
             return
         }
 
+        springSecurityService.reauthenticate(userInstance.getUsername())
         userInstance.save flush:true
 
         respond userInstance, [status: CREATED]

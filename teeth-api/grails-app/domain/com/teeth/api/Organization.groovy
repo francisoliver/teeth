@@ -1,15 +1,15 @@
 package com.teeth.api
 
-class Group {
-    User owner
+class Organization {
+    User manager
     String name
 
     static hasMany = [users: User]
     static constraints = {
-        owner nullable: false
+        manager nullable: false
         name nullable: false, unique: true
     }
     static mapping = {
-        owner column: "owner"
+        manager column: "manager"
     }
 }

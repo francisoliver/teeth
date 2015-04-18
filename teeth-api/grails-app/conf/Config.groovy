@@ -120,13 +120,18 @@ log4j = {
            'net.sf.ehcache.hibernate'
 }
 
+grails {
+    plugin {
+        springsecurity {
+            userLookup.userDomainClassName="com.teeth.api.User"
+            authority.className="com.teeth.api.Role"
+            userLookup.authorityJoinClassName="com.teeth.api.UserRole"
+            securityConfigType = "InterceptUrlMap"
+            interceptUrlMap = [
+                    '/':                  ['permitAll'],
+                    '/**':                ['permitAll']
+            ]
 
-userLookup.userDomainClassName="com.teeth.api.User"
-authority.className="com.teeth.api.Role"
-userLookup.authorityJoinClassName="com.teeth.api.UserRole"
-grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
-
-grails.plugin.springsecurity.interceptUrlMap = [
-        '/':                  ['permitAll'],
-        '/**':                ['permitAll']
-]
+        }
+    }
+}

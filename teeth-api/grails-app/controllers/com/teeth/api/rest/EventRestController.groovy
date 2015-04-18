@@ -18,7 +18,7 @@ class EventRestController {
 
     def show() {
         String code = params.code as String
-        Event event = Event.findByCode(code)
+        Event event = Event.findByEventCode(code)
         if (event == null) {
             render status: NOT_FOUND
             return
