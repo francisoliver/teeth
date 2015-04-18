@@ -6,3 +6,4 @@ workspace.xml
 **/target/**
 *Spec.groovy
 *.tld
+**/build/**
