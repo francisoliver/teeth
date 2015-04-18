@@ -1,11 +1,14 @@
 package com.teeth.app;
 
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import com.teeth.app.model.User;
 import com.teeth.app.service.TeethService;
@@ -18,8 +21,16 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        new LongRunningGetIO().execute();
+//        setContentView(R.layout.activity_main);
+//        new LongRunningGetIO().execute();
+        setContentView(R.layout.login_layout);
+
+
+        Button button = (Button)findViewById(R.id.logIn);
+        button.setOnClickListener(mLoginListener);
+
+//        loginButton.onclick
+
     }
 
 
@@ -49,12 +60,11 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         protected String doInBackground(Void... params) {
-            RestClient restClient = new RestClient();
 
             User user = new User();
             try {
 
-                TeethService teethService= restClient.getTeethService();
+                TeethService teethService= getTeethService();
 //                user = teethService.getUser("tester@mailinator.com");
                 user = teethService.getUser("francisoliver.malit@gmail.com");
 
@@ -73,4 +83,33 @@ public class MainActivity extends ActionBarActivity {
         }
 
     }
+
+    private View.OnClickListener mLoginListener = new View.OnClickListener() {
+
+        public void onClick(View v) {
+
+            String username = getUserName();
+            String password = getPassword();
+            User user = new User(username, password);
+            getTeethService().register(user);
+
+        }
+    };
+
+    @NonNull
+    private String getUserName() {
+        EditText username = (EditText)findViewById(R.id.username);
+        return username.getText().toString();
+    }
+
+    @NonNull
+    private String getPassword() {
+        EditText password = (EditText)findViewById(R.id.password);
+        return password.getText().toString();
+    }
+
+    private TeethService getTeethService() {
+        return new RestClient().getTeethService();
+    }
+
 }
