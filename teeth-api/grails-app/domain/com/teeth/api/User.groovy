@@ -9,6 +9,7 @@ class User {
     String password
     String token
 
+    static hasMany = [groups: Group]
     static constraints = {
         username nullable: false, blank: false, email: true
         mobile nullable: true
