@@ -4,3 +4,5 @@ workspace.xml
 .classpath
 .project
 **/target/**
+*Spec.groovy
+*.tld
