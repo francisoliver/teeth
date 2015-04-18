@@ -11,6 +11,13 @@ public class User {
     String password;
     String token;
 
+    public User() {    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public String serialize() {
         Gson gson = new Gson();
         return gson.toJson(this);
