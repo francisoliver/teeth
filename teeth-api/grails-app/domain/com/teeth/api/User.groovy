@@ -1,6 +1,5 @@
 package com.teeth.api
 
-
 class User {
     String username
     String mobile
@@ -9,7 +8,8 @@ class User {
     String password
     String token
 
-    static hasMany = [groups: Group]
+    static hasMany = [groups: UserGroup, events: UserEvent]
+
     static constraints = {
         username nullable: false, blank: false, email: true
         mobile nullable: true

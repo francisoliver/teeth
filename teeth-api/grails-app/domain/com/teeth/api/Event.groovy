@@ -3,7 +3,8 @@ package com.teeth.api
 class Event {
     User host
     String description
-    static hasMany = [users: User]
+
+    static hasMany = [users: UserEvent]
 
     static constraints = {
         host nullable: false
