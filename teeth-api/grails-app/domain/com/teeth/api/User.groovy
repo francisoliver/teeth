@@ -11,7 +11,7 @@ class User {
     static hasMany = [groups: UserGroup, events: UserEvent]
 
     static constraints = {
-        username nullable: false, blank: false, email: true
+        username nullable: false, blank: false, email: true, unique: true
         mobile nullable: true
         firstName nullable: false, blank: false
         lastName nullable:  false, blank: false

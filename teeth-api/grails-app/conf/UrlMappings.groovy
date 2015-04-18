@@ -7,7 +7,28 @@ class UrlMappings {
             }
         }
 
+
         "/"(view:"/index")
         "500"(view:'/error')
+        "/api/event"(controller: "eventRest", parseRequest: true) {
+            action = [POST: "save", GET: "index"]
+        }
+        "/api/event/$code"(controller: "eventRest", parseRequest: true) {
+            action = [GET: "show", PUT: "update"]
+        }
+
+        "/api/group"(controller: "groupRest", parseRequest: true) {
+            action = [POST: "save", GET: "index"]
+        }
+        "/api/group/$name"(controller: "groupRest", parseRequest: true) {
+            action = [GET: "show", PUT: "update"]
+        }
+
+        "/api/user"(controller: "userRest", parseRequest: true) {
+            action = [POST: "save", GET: "index"]
+        }
+        "/api/user/$username"(controller: "userRest", parseRequest: true) {
+            action = [GET: "show", PUT: "update"]
+        }
 	}
 }
