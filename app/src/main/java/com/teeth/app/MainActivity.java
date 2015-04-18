@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import com.teeth.app.model.User;
 import com.teeth.app.service.TeethService;
 import retrofit.RetrofitError;
 import com.teeth.app.restClient.RestClient;
@@ -49,19 +51,25 @@ public class MainActivity extends ActionBarActivity {
         protected String doInBackground(Void... params) {
             RestClient restClient = new RestClient();
             String output = "";
+            User user = new User();
             try {
 
                 TeethService teethService= restClient.getTeethService();
-                output = teethService.isConnected() ? "Connected!!!" : "Problem connecting to teeth api's";
+//                user = teethService.getUser("tester@mailinator.com");
+                user = teethService.getUser("francisoliver.malit@gmail.com");
 
             } catch (RetrofitError e) {
                 Log.d("Got error type: {}", e.getKind().toString());
             }
 
-//            EditText editText = (EditText)findViewById(R.id.editText); //todo: add the edit text to the android view
-//            editText.setText(output);
-            return output;
+            return user.toString();
 
+        }
+        protected void onPostExecute(String results) {
+            if (results!=null) {
+                EditText editText = (EditText)findViewById(R.id.editText);
+                editText.setText(results);
+            }
         }
 
     }
