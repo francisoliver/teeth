@@ -8,6 +8,12 @@ class User {
     String password
     String token
 
+    transient springSecurityService
+    boolean enabled = true
+    boolean accountExpired = false
+    boolean accountLocked = false
+    boolean passwordExpired = false
+
     static hasMany = [groups: UserGroup, events: UserEvent]
 
     static constraints = {
@@ -22,5 +28,22 @@ class User {
     @Override
     public String toString() {
         return username;
+    }
+
+    protected void encodePassword() {
+        if (springSecurityService) {
+            password = springSecurityService.encodePassword(password)
+        }
+    }
+
+    def beforeInsert() {
+        encodePassword()
+    }
+
+    def beforeUpdate() {
+        if (isDirty('password')) {
+            encodePassword()
+        }
+        this.username = this.username.trim()
     }
 }

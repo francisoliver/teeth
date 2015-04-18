@@ -1,6 +1,6 @@
 package com.teeth.api.rest
 
-import com.teeth.api.Group
+import com.teeth.api.Organization
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -13,13 +13,13 @@ class GroupRestController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Group.list(params), [status: OK]
+        respond Organization.list(params), [status: OK]
     }
 
 
     def show() {
         String name = params.name as String
-        Group group = Group.findByName(name)
+        Organization group = Organization.findByName(name)
         if (group == null) {
             render status: NOT_FOUND
             return
@@ -28,7 +28,7 @@ class GroupRestController {
     }
 
     @Transactional
-    def save(Group groupInstance) {
+    def save(Organization groupInstance) {
         if (groupInstance == null) {
             render status: NOT_FOUND
             return
@@ -45,7 +45,7 @@ class GroupRestController {
     }
 
     @Transactional
-    def update(Group groupInstance) {
+    def update(Organization groupInstance) {
         if (groupInstance == null) {
             render status: NOT_FOUND
             return

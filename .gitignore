@@ -13,3 +13,4 @@
 *Spec.groovy
 *.tld
 **/build/**
+**/out/**

@@ -27,8 +27,13 @@ class UrlMappings {
         "/api/user"(controller: "userRest", parseRequest: true) {
             action = [POST: "save", GET: "index"]
         }
+
         "/api/user/$username"(controller: "userRest", parseRequest: true) {
             action = [GET: "show", PUT: "update"]
+        }
+
+        "/api/login"(controller: "login", parseRequest: true) {
+            action = [POST: "login"]
         }
 	}
 }
