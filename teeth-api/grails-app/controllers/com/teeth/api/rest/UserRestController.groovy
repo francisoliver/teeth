@@ -10,14 +10,14 @@ import grails.plugin.springsecurity.SpringSecurityService
 class UserRestController {
 
     ExternalApiService externalApiService
-    static responseFormats = ['json', 'xml']
+    static responseFormats = ['json']
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     SpringSecurityService springSecurityService
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
 
-        def response = externalApiService.login()
+        println("showing!!!")
+        params.max = Math.min(max ?: 10, 100)
         respond User.list(params), [status: OK]
     }
 
@@ -32,17 +32,15 @@ class UserRestController {
     }
     @Transactional
     def save(User userInstance) {
-        if (userInstance == null) {
-            render status: NOT_FOUND
-            return
-        }
-
+        println("SAVING!!!!!!!!!!!!!!!!!!!!!!!!!")
         userInstance.validate()
         if (userInstance.hasErrors()) {
+            println("NOT ACCDEPTABLE!!!!!!!!!")
             render status: NOT_ACCEPTABLE
             return
         }
 
+        println("SAVING!!!!!!!!!")
         springSecurityService.reauthenticate(userInstance.getUsername())
         userInstance.save flush:true
 

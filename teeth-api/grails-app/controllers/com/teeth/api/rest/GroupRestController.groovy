@@ -29,11 +29,6 @@ class GroupRestController {
 
     @Transactional
     def save(Organization groupInstance) {
-        if (groupInstance == null) {
-            render status: NOT_FOUND
-            return
-        }
-
         groupInstance.validate()
         if (groupInstance.hasErrors()) {
             render status: NOT_ACCEPTABLE
