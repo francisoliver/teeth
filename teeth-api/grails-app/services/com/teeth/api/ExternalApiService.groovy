@@ -13,6 +13,8 @@ import groovyx.net.http.URIBuilder
 class ExternalApiService {
 
     def register() {
+
+
         def data
         URIBuilder uri = new URIBuilder("http://206.80.55.76:8080")
 //        uri.addQueryParam(getCredentials())
@@ -44,6 +46,44 @@ class ExternalApiService {
 
 
         }
+
+        data
+    }
+
+    def login() {
+        RESTClient client = new RESTClient("http://206.80.55.76:8080")
+        def data = client.post(path: '/HackathonWSAPI/hackathon/loginservice/login', requestContentType: ContentType.JSON,
+                body:
+                        """{
+                "email": "chester.troy@email.com",
+                "password": "12345",
+            }"""
+        )
+//        def data
+//        URIBuilder uri = new URIBuilder("http://206.80.55.76:8080")
+////        uri.addQueryParam(getCredentials())
+//
+//        HTTPBuilder httpBuilder = new HTTPBuilder(uri)
+//
+//        httpBuilder.request(Method.POST) { req ->
+//            uri.path = "/HackathonWSAPI/hackathon/loginservice/login"
+//
+//            requestContentType = ContentType.JSON
+//
+//            body = """{
+//                "email": "chester.troy@email.com",
+//                "password": "12345",
+//            }"""
+//
+//            response?.success = { resp, reader ->
+////
+////              data = json.data
+//                resp
+//                reader.getText()
+//            }
+//
+//
+//        }
 
         data
     }
