@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" android:background="#efefef">
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+            android:background="#efefef">
+    </LinearLayout>
+    <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:alpha="0">
+    </TableLayout>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Up for Free"
+            android:id="@+id/textView2" android:layout_gravity="center_horizontal" android:textSize="50px"
+            android:textColor="#333" android:layout_marginBottom="40px" android:paddingTop="50px"/>
+    <EditText
+            android:layout_width="500px"
+            android:layout_height="100px"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/email" android:layout_gravity="center_horizontal" android:hint="Your Email"
+            android:layout_marginBottom="20px"/>
+    <EditText
+            android:layout_width="500px"
+            android:layout_height="100px"
+            android:id="@+id/firstName" android:layout_gravity="center_horizontal" android:hint="First name"
+            android:layout_marginBottom="20px"/>
+    <EditText
+            android:layout_width="500px"
+            android:layout_height="100px"
+            android:id="@+id/lastName" android:layout_gravity="center_horizontal" android:hint="Last name"
+            android:layout_marginBottom="20px"/>
+    <EditText
+            android:layout_width="500px"
+            android:layout_height="100px"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/password" android:layout_gravity="center_horizontal" android:hint="Password"
+            android:layout_marginBottom="20px"/>
+    <EditText
+            android:layout_width="500px"
+            android:layout_height="100px"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/confirmPassword" android:layout_gravity="center_horizontal" android:hint="Confirm password"
+            android:layout_marginBottom="20px"/>
+    <EditText
+            android:layout_width="500px"
+            android:layout_height="100px"
+            android:inputType="phone"
+            android:ems="10"
+            android:id="@+id/mobile" android:layout_gravity="center_horizontal" android:hint="Phone number"
+            android:layout_marginBottom="20px"/>
+    <Button
+            android:layout_width="500px"
+            android:layout_height="100px"
+            android:text="Submit"
+            android:id="@+id/submit" android:layout_gravity="center_horizontal" android:background="#ff373aff"
+            android:textColor="#ffffffff"/>
+</LinearLayout>
