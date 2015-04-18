@@ -1,9 +1,14 @@
 package com.teeth.app;
 
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.teeth.app.service.TeethService;
+import retrofit.RetrofitError;
+import com.teeth.app.restClient.RestClient;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,6 +17,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        new LongRunningGetIO().execute();
     }
 
 
@@ -35,5 +41,28 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private class LongRunningGetIO extends AsyncTask<Void, Void, String> {
+
+        @Override
+        protected String doInBackground(Void... params) {
+            RestClient restClient = new RestClient();
+            String output = "";
+            try {
+
+                TeethService teethService= restClient.getTeethService();
+                output = teethService.isConnected() ? "Connected!!!" : "Problem connecting to teeth api's";
+
+            } catch (RetrofitError e) {
+                Log.d("Got error type: {}", e.getKind().toString());
+            }
+
+//            EditText editText = (EditText)findViewById(R.id.editText); //todo: add the edit text to the android view
+//            editText.setText(output);
+            return output;
+
+        }
+
     }
 }
