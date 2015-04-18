@@ -1,60 +1,62 @@
 package com.teeth.api
 
+
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-class UserController {
+class EventController {
 
     static responseFormats = ['json', 'xml']
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond User.list(params), [status: OK]
+        respond Event.list(params), [status: OK]
     }
 
     def show() {
-        String username = params.username as String
-        User userInstance = User.findByUsername(username)
-        if (userInstance == null) {
+        String code = params.code as String
+        Event event = Event.findByCode(code)
+        if (event == null) {
             render status: NOT_FOUND
             return
         }
-        respond userInstance, [status: OK]
+        respond event, [status: OK]
     }
+
     @Transactional
-    def save(User userInstance) {
-        if (userInstance == null) {
+    def save(Event eventInstance) {
+        if (eventInstance == null) {
             render status: NOT_FOUND
             return
         }
 
-        userInstance.validate()
-        if (userInstance.hasErrors()) {
+        eventInstance.validate()
+        if (eventInstance.hasErrors()) {
             render status: NOT_ACCEPTABLE
             return
         }
 
-        userInstance.save flush:true
-
-        respond userInstance, [status: CREATED]
+        eventInstance.save flush:true
+        respond eventInstance, [status: CREATED]
     }
 
     @Transactional
-    def update(User userInstance) {
-        if (userInstance == null) {
+    def update(Event eventInstance) {
+        if (eventInstance == null) {
             render status: NOT_FOUND
             return
         }
 
-        userInstance.validate()
-        if (userInstance.hasErrors()) {
+        eventInstance.validate()
+        if (eventInstance.hasErrors()) {
             render status: NOT_ACCEPTABLE
             return
         }
 
-        userInstance.save flush:true
-        respond userInstance, [status: OK]
+        eventInstance.save flush:true
+        respond eventInstance, [status: OK]
     }
 }

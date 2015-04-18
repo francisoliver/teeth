@@ -1,60 +1,63 @@
 package com.teeth.api
 
+
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-class UserController {
+class GroupController {
 
     static responseFormats = ['json', 'xml']
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond User.list(params), [status: OK]
+        respond Group.list(params), [status: OK]
     }
+
 
     def show() {
-        String username = params.username as String
-        User userInstance = User.findByUsername(username)
-        if (userInstance == null) {
+        String name = params.name as String
+        Group group = Group.findByName(name)
+        if (group == null) {
             render status: NOT_FOUND
             return
         }
-        respond userInstance, [status: OK]
+        respond group, [status: OK]
     }
+
     @Transactional
-    def save(User userInstance) {
-        if (userInstance == null) {
+    def save(Group groupInstance) {
+        if (groupInstance == null) {
             render status: NOT_FOUND
             return
         }
 
-        userInstance.validate()
-        if (userInstance.hasErrors()) {
+        groupInstance.validate()
+        if (groupInstance.hasErrors()) {
             render status: NOT_ACCEPTABLE
             return
         }
 
-        userInstance.save flush:true
-
-        respond userInstance, [status: CREATED]
+        groupInstance.save flush:true
+        respond groupInstance, [status: CREATED]
     }
 
     @Transactional
-    def update(User userInstance) {
-        if (userInstance == null) {
+    def update(Group groupInstance) {
+        if (groupInstance == null) {
             render status: NOT_FOUND
             return
         }
 
-        userInstance.validate()
-        if (userInstance.hasErrors()) {
+        groupInstance.validate()
+        if (groupInstance.hasErrors()) {
             render status: NOT_ACCEPTABLE
             return
         }
 
-        userInstance.save flush:true
-        respond userInstance, [status: OK]
+        groupInstance.save flush:true
+        respond groupInstance, [status: OK]
     }
 }
