@@ -1,7 +1,7 @@
-package com.teeth.api.scaffold
+package com.teeth.api
 
 import com.teeth.api.UserGroup
 
-class UserGroupScaffoldController {
+class UserGroupController {
     static scaffold = UserGroup
 }

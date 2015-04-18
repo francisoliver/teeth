@@ -1,7 +1,7 @@
-package com.teeth.api.scaffold
+package com.teeth.api
 
 import com.teeth.api.UserEvent
 
-class UserEventScaffoldController {
+class UserEventController {
      static scaffold = UserEvent
 }
