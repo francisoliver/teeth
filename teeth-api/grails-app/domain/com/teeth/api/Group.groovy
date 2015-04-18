@@ -6,4 +6,7 @@ class Group {
     static constraints = {
         owner nullable: false
     }
+    static mapping = {
+        owner column: "owner"
+    }
 }

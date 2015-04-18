@@ -18,4 +18,9 @@ class User {
         password nullable: false, blank: false, password: true, minSize: 6, maxSize: 10
         token nullable:  true
     }
+
+    @Override
+    public String toString() {
+        return username;
+    }
 }
