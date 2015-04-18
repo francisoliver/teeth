@@ -1,5 +1,8 @@
-workspace.xml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
 *.iml
-.idea
-.classpath
-.project
+*.idea
