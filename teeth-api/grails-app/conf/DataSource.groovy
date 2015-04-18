@@ -17,7 +17,7 @@ environments {
     development {
         dataSource {
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:mysql://localhost/securityx"
+            url = "jdbc:mysql://localhost/teeth"
             username = "root"
         }
     }
