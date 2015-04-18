@@ -1,7 +1,5 @@
 package com.teeth.api
 
-import org.apache.http.client.methods.HttpPost
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
