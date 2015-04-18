@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent" android:weightSum="1" android:orientation="vertical"
+        >
 
+    <GridLayout
+            android:layout_width="307dp"
+            android:layout_height="230dp"
+            android:columnCount="2" android:rowCount="52">
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/username" android:layout_row="50" android:layout_column="1"
+                android:hint="Your email address"/>
+        <EditText
+                android:layout_width="184dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/password" android:layout_row="51" android:layout_column="1" android:hint="Password"/>
+    </GridLayout>
+    <Button
+            android:layout_width="222dp"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:id="@+id/logIn" android:layout_gravity="center_horizontal"/>
 </LinearLayout>
