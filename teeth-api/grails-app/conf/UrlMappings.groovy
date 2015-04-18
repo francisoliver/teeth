@@ -10,24 +10,24 @@ class UrlMappings {
 
         "/"(view:"/index")
         "500"(view:'/error')
-        "/event"(controller: "eventRest", parseRequest: true) {
+        "/api/event"(controller: "eventRest", parseRequest: true) {
             action = [POST: "save", GET: "index"]
         }
-        "/event/$code"(controller: "eventRest", parseRequest: true) {
+        "/api/event/$code"(controller: "eventRest", parseRequest: true) {
             action = [GET: "show", PUT: "update"]
         }
 
-        "/group"(controller: "groupRest", parseRequest: true) {
+        "/api/group"(controller: "groupRest", parseRequest: true) {
             action = [POST: "save", GET: "index"]
         }
-        "/group/$name"(controller: "groupRest", parseRequest: true) {
+        "/api/group/$name"(controller: "groupRest", parseRequest: true) {
             action = [GET: "show", PUT: "update"]
         }
 
-        "/user"(controller: "userRest", parseRequest: true) {
+        "/api/user"(controller: "userRest", parseRequest: true) {
             action = [POST: "save", GET: "index"]
         }
-        "/user/$username"(controller: "userRest", parseRequest: true) {
+        "/api/user/$username"(controller: "userRest", parseRequest: true) {
             action = [GET: "show", PUT: "update"]
         }
 	}
