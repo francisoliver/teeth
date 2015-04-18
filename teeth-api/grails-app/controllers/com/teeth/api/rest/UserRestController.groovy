@@ -1,10 +1,12 @@
-package com.teeth.api
+package com.teeth.api.rest
+
+import com.teeth.api.User
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-class UserController {
+class UserRestController {
 
     static responseFormats = ['json', 'xml']
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
