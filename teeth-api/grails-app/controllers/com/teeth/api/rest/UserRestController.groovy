@@ -15,11 +15,8 @@ class UserRestController {
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
 
-//        def response = externalApiService.register()
         def response = externalApiService.login()
-
-        render response
-//        respond User.list(params), [status: OK]
+        respond User.list(params), [status: OK]
     }
 
     def show() {

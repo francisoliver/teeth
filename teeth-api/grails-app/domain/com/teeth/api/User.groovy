@@ -8,6 +8,11 @@ class User {
     String password
     String token
 
+    boolean enabled = true
+    boolean accountExpired = false
+    boolean accountLocked = false
+    boolean passwordExpired = false
+
     static hasMany = [groups: UserGroup, events: UserEvent]
 
     static constraints = {
