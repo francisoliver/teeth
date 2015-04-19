@@ -18,6 +18,14 @@ public class User {
         this.password = password;
     }
 
+    public User(String username, String mobile, String firstName, String lastName, String password) {
+        this.username = username;
+        this.mobile = mobile;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+    }
+
     public String serialize() {
         Gson gson = new Gson();
         return gson.toJson(this);
