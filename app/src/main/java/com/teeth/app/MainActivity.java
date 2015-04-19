@@ -10,26 +10,26 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import com.teeth.app.model.Login;
 import com.teeth.app.model.User;
 import com.teeth.app.service.TeethService;
 import retrofit.RetrofitError;
 import com.teeth.app.restClient.RestClient;
+import retrofit.client.Response;
 
 
 public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//        new LongRunningGetIO().execute();
-        setContentView(R.layout.login_layout);
-
-
-        Button button = (Button)findViewById(R.id.logIn);
+        setContentView(R.layout.register);
+        Button button = (Button)findViewById(R.id.submit);
         button.setOnClickListener(mLoginListener);
 
-//        loginButton.onclick
+
+
 
     }
 
@@ -57,41 +57,61 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private class LongRunningGetIO extends AsyncTask<Void, Void, String> {
+//        String username;
 
         @Override
         protected String doInBackground(Void... params) {
 
-            User user = new User();
+            User  user = buildUserFromRegisterPage();
             try {
-
-                TeethService teethService= getTeethService();
-//                user = teethService.getUser("tester@mailinator.com");
-                user = teethService.getUser("francisoliver.malit@gmail.com");
-
+                Response r = getTeethService().register(user);
+                String o;
+//                username = r.
             } catch (RetrofitError e) {
-                Log.d("Got error type: {}", e.getKind().toString());
+                System.out.print(e.getMessage());
             }
-
-            return user.toString();
-
+            return "ok";
         }
         protected void onPostExecute(String results) {
-            if (results!=null) {
-                EditText editText = (EditText)findViewById(R.id.editText);
-                editText.setText(results);
-            }
+            setContentView(R.layout.login_layout);
+//            username + " successfully registered.";
         }
 
+    }
+
+    private User buildUserFromRegisterPage() {
+        /*
+        email
+        firstName
+        lastName
+        password
+        mobile
+         */
+
+        EditText email = (EditText)findViewById(R.id.email);
+        String _email =  email.getText().toString();
+
+        EditText firstName = (EditText)findViewById(R.id.firstName);
+        String _firstName =  firstName.getText().toString();
+
+        EditText lastName = (EditText)findViewById(R.id.lastName);
+        String _lastName =  lastName.getText().toString();
+
+        EditText password = (EditText)findViewById(R.id.password);
+        String _password =  password.getText().toString();
+
+        EditText mobile = (EditText)findViewById(R.id.mobile);
+        String _mobile =  mobile.getText().toString();
+
+        User user = new User( _email, _mobile, _firstName, _lastName, _password);
+        return  user;
     }
 
     private View.OnClickListener mLoginListener = new View.OnClickListener() {
 
         public void onClick(View v) {
 
-            String username = getUserName();
-            String password = getPassword();
-            User user = new User(username, password);
-            getTeethService().register(user);
+            new LongRunningGetIO().execute();
 
         }
     };
@@ -111,5 +131,7 @@ public class MainActivity extends ActionBarActivity {
     private TeethService getTeethService() {
         return new RestClient().getTeethService();
     }
+
+
 
 }
