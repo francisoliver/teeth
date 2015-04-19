@@ -40,4 +40,8 @@ public class User {
     public String toString() {
         return this.firstName + " " + this.lastName;
     }
+
+    public String getUsername() {
+        return username;
+    }
 }

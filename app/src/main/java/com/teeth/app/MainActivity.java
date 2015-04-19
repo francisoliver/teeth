@@ -4,13 +4,12 @@ import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import com.teeth.app.model.Login;
+import android.widget.TextView;
 import com.teeth.app.model.User;
 import com.teeth.app.service.TeethService;
 import retrofit.RetrofitError;
@@ -27,9 +26,6 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.register);
         Button button = (Button)findViewById(R.id.submit);
         button.setOnClickListener(mLoginListener);
-
-
-
 
     }
 
@@ -56,25 +52,27 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private class LongRunningGetIO extends AsyncTask<Void, Void, String> {
-//        String username;
+    private class RegisterUser extends AsyncTask<Void, Void, String> {
+
+        String username;
 
         @Override
         protected String doInBackground(Void... params) {
 
             User  user = buildUserFromRegisterPage();
             try {
-                Response r = getTeethService().register(user);
+                Response response = getTeethService().register(user);
                 String o;
-//                username = r.
             } catch (RetrofitError e) {
                 System.out.print(e.getMessage());
             }
-            return "ok";
+            username = user.getUsername();
+            return "success";
         }
         protected void onPostExecute(String results) {
-            setContentView(R.layout.login_layout);
-//            username + " successfully registered.";
+            setContentView(R.layout.activity_main);
+            TextView greetingTxt = (TextView)findViewById(R.id.textView);
+            greetingTxt.setText("Welcome "+ username);
         }
 
     }
@@ -111,7 +109,7 @@ public class MainActivity extends ActionBarActivity {
 
         public void onClick(View v) {
 
-            new LongRunningGetIO().execute();
+            new RegisterUser().execute();
 
         }
     };
