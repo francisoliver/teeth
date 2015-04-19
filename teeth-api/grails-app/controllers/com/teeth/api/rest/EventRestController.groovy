@@ -45,10 +45,6 @@ class EventRestController {
 
     @Transactional
     def update(Event eventInstance) {
-        if (eventInstance == null) {
-            render status: NOT_FOUND
-            return
-        }
 
         eventInstance.validate()
         if (eventInstance.hasErrors()) {
