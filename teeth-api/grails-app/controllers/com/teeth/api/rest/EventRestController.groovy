@@ -1,6 +1,8 @@
 package com.teeth.api.rest
 
 import com.teeth.api.Event
+import com.teeth.api.User
+import grails.plugin.springsecurity.SpringSecurityService
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -10,6 +12,7 @@ class EventRestController {
 
     static responseFormats = ['json', 'xml']
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    SpringSecurityService springSecurityService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -28,10 +31,8 @@ class EventRestController {
 
     @Transactional
     def save(Event eventInstance) {
-        if (eventInstance == null) {
-            render status: NOT_FOUND
-            return
-        }
+        User user = (User)springSecurityService.currentUser
+        eventInstance.host = user
 
         eventInstance.validate()
         if (eventInstance.hasErrors()) {
@@ -45,6 +46,10 @@ class EventRestController {
 
     @Transactional
     def update(Event eventInstance) {
+        if (eventInstance == null) {
+            render status: NOT_FOUND
+            return
+        }
 
         eventInstance.validate()
         if (eventInstance.hasErrors()) {
