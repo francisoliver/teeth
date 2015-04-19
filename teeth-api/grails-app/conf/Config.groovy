@@ -129,7 +129,7 @@ grails {
             securityConfigType = "InterceptUrlMap"
             interceptUrlMap = [
                     '/':                  ['permitAll'],
-                    '/**':                ['authenticated']
+                    '/**':                ['permitAll']
             ]
 
         }
