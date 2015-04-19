@@ -32,16 +32,12 @@ class UserRestController {
     }
     @Transactional
     def save(User userInstance) {
-        println("SAVING!!!!!!!!!!!!!!!!!!!!!!!!!")
         userInstance.validate()
         if (userInstance.hasErrors()) {
-            println("NOT ACCDEPTABLE!!!!!!!!!")
             render status: NOT_ACCEPTABLE
             return
         }
 
-        println("SAVING!!!!!!!!!")
-        springSecurityService.reauthenticate(userInstance.getUsername())
         userInstance.save flush:true
 
         respond userInstance, [status: CREATED]
