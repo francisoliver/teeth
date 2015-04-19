@@ -46,4 +46,10 @@ class User {
         }
         this.username = this.username.trim()
     }
+
+    Set<Role> getAuthorities() {
+        UserRole.findAllByUser(this).collect { it.role }
+    }
+
+
 }

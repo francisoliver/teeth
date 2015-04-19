@@ -40,6 +40,8 @@ class UserRestController {
 
         userInstance.save flush:true
 
+        springSecurityService.reauthenticate(userInstance.username)
+
         respond userInstance, [status: CREATED]
     }
 
