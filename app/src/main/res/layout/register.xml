@@ -63,5 +63,5 @@
             android:layout_height="100px"
             android:text="Submit"
             android:id="@+id/submit" android:layout_gravity="center_horizontal" android:background="#ff373aff"
-            android:textColor="#ffffffff"/>
+            android:textColor="#ffffffff" android:enabled="true" android:focusable="true" android:clickable="true"/>
 </LinearLayout>
