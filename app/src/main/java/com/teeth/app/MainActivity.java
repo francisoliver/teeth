@@ -66,7 +66,7 @@ public class MainActivity extends ActionBarActivity {
             } catch (RetrofitError e) {
                 System.out.print(e.getMessage());
             }
-            username = user.getUsername();
+            username = user.getFirstName();
             return "success";
         }
         protected void onPostExecute(String results) {
