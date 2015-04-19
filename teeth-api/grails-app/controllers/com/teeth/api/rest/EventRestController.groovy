@@ -15,8 +15,14 @@ class EventRestController {
     SpringSecurityService springSecurityService
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Event.list(params), [status: OK]
+        User user = (User)springSecurityService.currentUser
+
+        if(user == null) {
+            render status: UNAUTHORIZED
+            return
+        }
+
+        respond Event.findAllByHost(user), [status: OK]
     }
 
     def show() {
@@ -32,6 +38,12 @@ class EventRestController {
     @Transactional
     def save(Event eventInstance) {
         User user = (User)springSecurityService.currentUser
+
+        if(user == null) {
+            render status: UNAUTHORIZED
+            return
+        }
+
         eventInstance.host = user
 
         eventInstance.validate()
