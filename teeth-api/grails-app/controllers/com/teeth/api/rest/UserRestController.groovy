@@ -15,10 +15,7 @@ class UserRestController {
     SpringSecurityService springSecurityService
 
     def index(Integer max) {
-
-        println("showing!!!")
-        params.max = Math.min(max ?: 10, 100)
-        respond User.list(params), [status: OK]
+        respond User.list(), [status: OK]
     }
 
     def show() {
